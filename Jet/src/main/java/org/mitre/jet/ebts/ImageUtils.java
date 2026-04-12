@@ -18,8 +18,8 @@ package org.mitre.jet.ebts;
 
 import org.mitre.jet.common.ByteBufferUtils;
 
-import javax.xml.bind.DatatypeConverter;
 import java.nio.ByteBuffer;
+import java.util.HexFormat;
 
 /**
  * User: aday
@@ -29,22 +29,22 @@ public class ImageUtils {
     //TODO: Store the byte array data in its raw format to improve performance
 
     public static int getWsqImagePosition(final ByteBuffer bb) {
-        final byte[] header = DatatypeConverter.parseHexBinary("FFA0FF");
+        final byte[] header = HexFormat.of().parseHex("FFA0FF");
         return ByteBufferUtils.findIndex(bb, header);
     }
 
     public static int getJp2ImagePosition(final ByteBuffer bb) {
-        final byte[] header =  DatatypeConverter.parseHexBinary("0000000C6A5020200D0A870A");
+        final byte[] header =  HexFormat.of().parseHex("0000000C6A5020200D0A870A");
         return ByteBufferUtils.findIndex(bb, header);
     }
 
     public static int getJpgImagePosition(final ByteBuffer bb) {
-        final byte[] header =  DatatypeConverter.parseHexBinary("FFD8FF");
+        final byte[] header =  HexFormat.of().parseHex("FFD8FF");
         return ByteBufferUtils.findIndex(bb, header);
     }
 
     public static int getPngImagePosition(final ByteBuffer bb) {
-        final byte[] header =  DatatypeConverter.parseHexBinary("89504E470D0A1A0A");
+        final byte[] header =  HexFormat.of().parseHex("89504E470D0A1A0A");
         return ByteBufferUtils.findIndex(bb, header);
     }
 }
